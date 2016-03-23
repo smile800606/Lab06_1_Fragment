@@ -48,6 +48,6 @@
         android:background="#EEEEEE"
         android:onClick="reset"
         android:text="重置"
-        android:textSize="@dimen/font_size" />
+        android:textSize="16sp" />
 
 </RelativeLayout>

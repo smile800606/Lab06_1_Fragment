@@ -1,66 +1,44 @@
-package com.example.student.lab03_1_courtcounter;
+package com.example.student.lab06_1_fragment;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
-
-import com.example.student.lab06_1_fragment.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int scoreA;
-    private int scoreB;
+    private CourtCounterFragment  m_fragment_team_a;
+    private CourtCounterFragment m_fragment_team_b;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
-    public void displayforA (int score){
-        TextView scoreA = (TextView)findViewById(R.id.A_sccore);
-        scoreA.setText(String.valueOf(score));
+    public void onStart(){
+        super.onStart();
+        setFragmentTeamName();
     }
+private void setFragmentTeamName(){
+    m_fragment_team_a =
+            (CourtCounterFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_team_a);
+    m_fragment_team_b =
+            (CourtCounterFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_team_b);
+    m_fragment_team_a.setTeamName("湖人");
+    m_fragment_team_b.setTeamName("火箭");
 
-    public void  add3forA (View view){
-        scoreA += 3;
-        displayforA(scoreA);
-    }
-    public void add2forA (View view){
-        scoreA += 2;
-        displayforA(scoreA);
-    }
-    public void add1forA(View view){
-        scoreA += 1;
-        displayforA(scoreA);
-    }
+}
 
-
-
-    public void displayforB (int score){
-        TextView scoreB = (TextView)findViewById(R.id.B_sccore);
-        scoreB.setText(String.valueOf(score));
-    }
-
-    public void  add3forB (View view){
-        scoreB += 3;
-        displayforB(scoreB);
-    }
-    public void add2forB (View view){
-        scoreB += 2;
-        displayforB(scoreB);
-    }
-    public void add1forB(View view){
-        scoreB += 1;
-        displayforB(scoreB);
-    }
-    public void reset (View view){
-        scoreB = 0;
-        scoreA = 0;
-        displayforA(scoreA);
-        displayforB(scoreB);
+    public void reset(View view) {
+        m_fragment_team_a.reset();
+        m_fragment_team_b.reset();
+        CourtCounterFragment fragment_team_a =
+                (CourtCounterFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_team_a);
+        CourtCounterFragment fragment_team_b =
+                (CourtCounterFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_team_b);
+        fragment_team_a.reset();
+        fragment_team_b.reset();
     }
 
 
 }
-
